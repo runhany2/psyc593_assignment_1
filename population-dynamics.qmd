@@ -4,7 +4,7 @@ subtitle: "Assignment 1 - PSYC593"
 format:
   html: default
 date: today
-author: "Name"
+author: "Brad Y"
 ---
 
 <!-- These problems come from Imai, K. & Webb Williams, N. (2018). Quantitative Social Science: An introduction -->
@@ -211,7 +211,7 @@ Using the ASFR, we can define the TFR as the average number of
 compute_tfr <- function(pop_data) {
   pop_data %>% 
     group_by(period) %>% 
-    summarise(tfr=5 * sum(asfr)) %>% 
+    summarise(tfr = 5 * sum(asfr)) %>% 
     pull()
 }
 
@@ -229,7 +229,7 @@ wor_data %>%
 )
 
 # Compare how much these totals have changed
-(changes_totals <- totals_world[2,-1]/totals_world[1,-1])
+(changes_totals <- totals_world[2, -1] / totals_world[1, -1])
 ```
 
 Both the total number of women and the total number of births 
@@ -292,7 +292,7 @@ One puzzling finding from the previous question is that the CDR
 # Function to compute Age specific death rate (ASDR)
 compute_asdr <- function(pop_data) {
   pop_data %>% 
-    mutate(asdr = deaths/py)
+    mutate(asdr = deaths / py)
 }
 
 # Compute ASDR for each data set
@@ -339,18 +339,17 @@ One way to understand the difference in the CDR between Kenya
 compute_pop_prop <- function(pop_data) {
   pop_data %>% 
     group_by(period) %>%
-    mutate(popP = py / sum(py)) %>%
+    mutate(pop_prop = py / sum(py)) %>%
     ungroup()
 }
 
 # Compute population proportion for each data set
-wor_data<- compute_pop_prop(wor_data)
-ken_data<- compute_pop_prop(ken_data)
-swe_data<- compute_pop_prop(swe_data)
+wor_data <- compute_pop_prop(wor_data)
+ken_data <- compute_pop_prop(ken_data)
+swe_data <- compute_pop_prop(swe_data)
 
 # Compute Kenyas CDR Kenya had Sweden's population distribution
-mutate(ken_data,
- temp_cdr = asdr * swe_data$popP) %>%
+mutate(ken_data, temp_cdr = asdr * swe_data$pop_prop) %>% 
   group_by(period) %>%
   summarise(cdrresweden = sum(temp_cdr))
 ```

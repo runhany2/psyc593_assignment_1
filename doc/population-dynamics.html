@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Name">
-<meta name="dcterms.date" content="2023-09-08">
+<meta name="author" content="Brad Y">
+<meta name="dcterms.date" content="2023-09-21">
 
 <title>Understanding World Population Dynamics</title>
 <style>
@@ -94,14 +94,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Name </p>
+             <p>Brad Y </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 8, 2023</p>
+      <p class="date">September 21, 2023</p>
     </div>
   </div>
   
@@ -293,7 +293,7 @@ age range of [20, 35) have higher reproduction.</p>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>compute_tfr <span class="ot">&lt;-</span> <span class="cf">function</span>(pop_data) {</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  pop_data <span class="sc">%&gt;%</span> </span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(period) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">tfr=</span><span class="dv">5</span> <span class="sc">*</span> <span class="fu">sum</span>(asfr)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">tfr =</span> <span class="dv">5</span> <span class="sc">*</span> <span class="fu">sum</span>(asfr)) <span class="sc">%&gt;%</span> </span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>()</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -325,7 +325,7 @@ age range of [20, 35) have higher reproduction.</p>
 2 2005-2010   16554781.      674581.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare how much these totals have changed</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(changes_totals <span class="ot">&lt;-</span> totals_world[<span class="dv">2</span>,<span class="sc">-</span><span class="dv">1</span>]<span class="sc">/</span>totals_world[<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(changes_totals <span class="ot">&lt;-</span> totals_world[<span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>] <span class="sc">/</span> totals_world[<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  total_women total_births
 1    2.525256     1.379818</code></pre>
@@ -381,7 +381,7 @@ age range of [20, 35) have higher reproduction.</p>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to compute Age specific death rate (ASDR)</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>compute_asdr <span class="ot">&lt;-</span> <span class="cf">function</span>(pop_data) {</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  pop_data <span class="sc">%&gt;%</span> </span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">asdr =</span> deaths<span class="sc">/</span>py)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">asdr =</span> deaths <span class="sc">/</span> py)</span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute ASDR for each data set</span></span>
@@ -428,20 +428,19 @@ age range of [20, 35) have higher reproduction.</p>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>compute_pop_prop <span class="ot">&lt;-</span> <span class="cf">function</span>(pop_data) {</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  pop_data <span class="sc">%&gt;%</span> </span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(period) <span class="sc">%&gt;%</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">popP =</span> py <span class="sc">/</span> <span class="fu">sum</span>(py)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pop_prop =</span> py <span class="sc">/</span> <span class="fu">sum</span>(py)) <span class="sc">%&gt;%</span></span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute population proportion for each data set</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>wor_data<span class="ot">&lt;-</span> <span class="fu">compute_pop_prop</span>(wor_data)</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>ken_data<span class="ot">&lt;-</span> <span class="fu">compute_pop_prop</span>(ken_data)</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>swe_data<span class="ot">&lt;-</span> <span class="fu">compute_pop_prop</span>(swe_data)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>wor_data <span class="ot">&lt;-</span> <span class="fu">compute_pop_prop</span>(wor_data)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>ken_data <span class="ot">&lt;-</span> <span class="fu">compute_pop_prop</span>(ken_data)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>swe_data <span class="ot">&lt;-</span> <span class="fu">compute_pop_prop</span>(swe_data)</span>
 <span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Kenyas CDR Kenya had Sweden's population distribution</span></span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(ken_data,</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a> <span class="at">temp_cdr =</span> asdr <span class="sc">*</span> swe_data<span class="sc">$</span>popP) <span class="sc">%&gt;%</span></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">%&gt;%</span></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">cdrresweden =</span> <span class="fu">sum</span>(temp_cdr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(ken_data, <span class="at">temp_cdr =</span> asdr <span class="sc">*</span> swe_data<span class="sc">$</span>pop_prop) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">%&gt;%</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">cdrresweden =</span> <span class="fu">sum</span>(temp_cdr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   period    cdrresweden
